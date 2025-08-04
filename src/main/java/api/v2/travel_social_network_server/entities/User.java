@@ -86,6 +86,10 @@ public class User implements UserDetails {
     @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private UserProfile userProfile;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private PasswordResetToken passwordResetToken;
 //
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 //    @JsonIgnore

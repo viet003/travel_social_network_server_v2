@@ -1,5 +1,6 @@
 package api.v2.travel_social_network_server.controllers;
 
+import api.v2.travel_social_network_server.dtos.auth.ChangePasswordDto;
 import api.v2.travel_social_network_server.dtos.auth.LoginDto;
 import api.v2.travel_social_network_server.dtos.auth.RegisterDto;
 import api.v2.travel_social_network_server.responses.Response;
@@ -28,5 +29,17 @@ public class AuthController {
     public ResponseEntity<Response<LoginResponse>> login(@Valid @RequestBody LoginDto loginDto) {
         LoginResponse response = authService.loginService(loginDto);
         return ResponseEntity.ok(Response.success(response, "Login successfully"));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Response<String>> forgotPassword(@RequestParam String email) {
+        authService.forgotPasswordService(email);
+        return ResponseEntity.ok(Response.success(null, "Reset password link sent successfully"));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<Response<String>> resetPassword(@RequestParam String token,@Valid @RequestBody ChangePasswordDto changePasswordDto) {
+        authService.resetPasswordService(token, changePasswordDto);
+        return ResponseEntity.ok(Response.success(null, "Password reset successfully"));
     }
 }
