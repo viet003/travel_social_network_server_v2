@@ -9,7 +9,7 @@ import api.v2.travel_social_network_server.exceptions.ResourceNotFoundException;
 //import api.v2.travel_social_network_server.reponses.post.PostResponse;
 //import api.v2.travel_social_network_server.reponses.user.UpdateUserResponse;
 //import api.v2.travel_social_network_server.reponses.user.UserResponse;
-import api.v2.travel_social_network_server.responsitories.UserRepository;
+import api.v2.travel_social_network_server.repositories.UserRepository;
 
 //import api.v2.travel_social_network_server.utilities.GenderEnum;
 import lombok.RequiredArgsConstructor;

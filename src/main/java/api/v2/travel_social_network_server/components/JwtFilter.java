@@ -104,7 +104,10 @@ public class JwtFilter extends OncePerRequestFilter {
                 // Authentication endpoints
                 Pair.of(String.format("%s/auth/login", apiBaseURL), "POST"),
                 Pair.of(String.format("%s/auth/register", apiBaseURL), "POST"),
-                Pair.of(String.format("%s/auth/admin/login", apiBaseURL), "POST")
+                Pair.of(String.format("%s/auth/admin/login", apiBaseURL), "POST"),
+                Pair.of(String.format("%s/auth/forgot-password", apiBaseURL), "POST"),
+                Pair.of(String.format("%s/auth/reset-password", apiBaseURL), "POST")
+
 
 //                // Chat endpoints
 //                Pair.of("/ws", "GET"),
