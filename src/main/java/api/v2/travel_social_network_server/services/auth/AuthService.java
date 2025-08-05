@@ -21,7 +21,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.UUID;
 
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -130,7 +129,7 @@ public class AuthService implements IAuthService {
         MailDto mailDto = MailDto.builder()
                 .to(email)
                 .subject("Requset to reset password")
-                .placeholders(Map.of("resetPasswordLink", resetLink, "linkExpirationTime", "30 phút"))
+                .placeholders(Map.of("resetPasswordLink", resetLink, "linkExpirationTime", "30 minutes"))
                 .templateName("change_password_template")
                 .build();
 
