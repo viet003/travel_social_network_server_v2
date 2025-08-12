@@ -1,6 +1,8 @@
 package api.v2.travel_social_network_server.responses.auth;
 
+import api.v2.travel_social_network_server.entities.UserCredential;
 import api.v2.travel_social_network_server.entities.UserProfile;
+import api.v2.travel_social_network_server.utilities.ProviderEnum;
 import lombok.*;
 
 import java.util.UUID;
@@ -19,4 +21,5 @@ public class LoginResponse {
     private String coverImg;
     private String role;
     private UserProfile userProfile;
+    private ProviderEnum provider;
 }
