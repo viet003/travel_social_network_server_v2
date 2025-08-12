@@ -53,6 +53,12 @@ public class GlobalExceptionHandler {
         return Response.error("Resource not found", Map.of("error", ex.getMessage()));
     }
 
+    @ExceptionHandler(ResourceNotMatchException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Response<?> handleResourceNotMatch(ResourceNotMatchException ex) {
+        return Response.error("Resource not match", Map.of("error", ex.getMessage()));
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public Response<?> handleBadCredentials(BadCredentialsException ex) {

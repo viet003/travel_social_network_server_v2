@@ -1,5 +1,6 @@
 package api.v2.travel_social_network_server.entities;
 
+import api.v2.travel_social_network_server.utilities.ProviderEnum;
 import api.v2.travel_social_network_server.utilities.RoleEnum;
 import api.v2.travel_social_network_server.utilities.StatusEnum;
 import com.fasterxml.jackson.annotation.*;
@@ -46,11 +47,6 @@ public class User implements UserDetails {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Size(max = 255)
-    @Column(name = "pass_word", nullable = false)
-    @JsonIgnore
-    private String password;
-
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
@@ -79,8 +75,8 @@ public class User implements UserDetails {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime updatedAt;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<UserCredential> credentials;
 
     @JsonManagedReference
@@ -112,6 +108,16 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return this.userName;
+    }
+
+    @Override
+    @JsonIgnore
+    public String getPassword() {
+        return credentials.stream()
+                .filter(c -> c.getProvider() == ProviderEnum.LOCAL)
+                .map(UserCredential::getPassword)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
